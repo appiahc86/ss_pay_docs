@@ -113,13 +113,36 @@ fetch('/auth/register', {
 #### Success response
 ````
 {
- 
+    "success": true,
+    "message": "Registration successful",
+    "data": {
+        "user": {
+            "id": "", //User id. You won't be needing it
+            "name": "registration",
+            "phone": "+233xxxxxxxxx",
+            "cardNumber": "", //10 digits number
+            "balance": "0.00",
+            "status": "active",
+            "created_at": "", // Date and time of registration
+            "phone_verified": true,
+            "userType": "user"
+        },
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyVHlwZSI6InVzZXIiLCJwaG9uZSI6IisyMzMyNDQ2NDM1MzEiLCJjYXJkTnVtYmVyIjoiMTIwNzA0MTAyNSIsImlhdCI6MTc2NTEzNTI5MCwiZXhwIjoxNzY1MjIxNjkwfQ.ItXTs3LxZ2i0NoeOB1ooauFXq-MEMArFI33pe3dZUlw" //Like this
+    }
 }
 ````
 
 #### Error response (code 400)
 ````
 {
-
+    "success": false,
+    "message": "Invalid or expired OTP verification"
+}
+````
+#### Error response. (error code 409)
+````
+{
+    "success": false,
+    "message": "Phone number is already registered"
 }
 ````
