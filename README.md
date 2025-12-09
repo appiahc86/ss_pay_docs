@@ -55,7 +55,7 @@ fetch('/auth/request-otp', {
 ### Verify OTP
 ````
 const data = {
-  "phone": "", //eg. 0244123456
+  "phone": "", //eg. 0244123456 must be 10 digits
   "otp": "", //6 digits code recieved via sms
   "purpose": "registration"
 }
@@ -94,7 +94,7 @@ fetch('/auth/verify-otp', {
 ````
 const data = {
   "name": "", //min 2, max 100 characters
-  "phone": "", //eg. 0244123456
+  "phone": "", //eg. 0244123456 must be 10 digits
   "otpId": "", // Will get this after verifying otp
 }
 
@@ -146,3 +146,53 @@ fetch('/auth/register', {
     "message": "Phone number is already registered"
 }
 ````
+
+### Login
+````
+const data = {
+  "user_type": "user"
+  "phone": "", //eg. 0244123456 must be 10 digits
+  "credential": "", // User's 4 digits pin 
+}
+
+fetch('/auth/login', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data) 
+})
+
+
+````
+
+#### Success response
+````
+{
+    "success": true,
+    "message": "Login successful",
+    "data": {
+        "user": {
+            "id": "", //user id
+            "name": "Name of user",
+            "phone": "+233xxxxxxxxx",
+            "status": "active",
+            "cardNumber": "1234567890",
+            "balance": "", //user balance
+            "created_at": "", //date and time
+            "last_login_at": "", //date and time
+            "phone_verified": 1
+        },
+        "token": "" //JWT token
+    }
+}
+````
+
+#### Error response (code 400)
+````
+{
+    "success": false,
+    "message": "" //May display this to user
+}
+````
+
